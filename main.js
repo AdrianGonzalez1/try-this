@@ -8,6 +8,6 @@ goButton.addEventListener('click', function () {
   xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
     console.log(xhr.response)
-    });
-    xhr.send();
+  });
+  xhr.send();
 })
