@@ -45,7 +45,7 @@ function handleClick(event){
     if (event.target.id === 'favorite') {
       favoriteIcon.classList.add('favorite')
       //check if current item just added so can't click star and add many times
-      if (currentActivity[favorites.length -1] !== currentActivity )
+      if (favorites[favorites.length -1] !== currentActivity )
       favorites.push(currentActivity)
       var favoritesJSON = JSON.stringify(favorites);
       localStorage.setItem('favorites', favoritesJSON);
