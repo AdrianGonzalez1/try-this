@@ -2,7 +2,7 @@ var goButton = document.querySelector('.go-button');
 var homeBody = document.querySelector('#home-body');
 var $activity = document.querySelector('#activity')
 var $viewRandom = document.querySelector('#view-random')
-
+var navBar = document.querySelector('.nav');
 
 getData()
 
@@ -27,6 +27,8 @@ function getData () {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     data.allActivities = xhr.response
+    navBar.classList.add('hidden')
+
   });
   xhr.send();
 }
@@ -35,6 +37,7 @@ function viewSwap(id) {
   if(id === "go-button"){
     homeBody.classList.add('hidden')
     $viewRandom.classList.remove('hidden')
+    navBar.classList.remove('hidden')
     renderActivity()
   }
 }
