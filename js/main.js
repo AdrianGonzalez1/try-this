@@ -3,18 +3,57 @@ var homeBody = document.querySelector('#home-body');
 var $activity = document.querySelector('#activity')
 var $viewRandom = document.querySelector('#view-random')
 var navBar = document.querySelector('.nav');
+var favoriteIcon = document.querySelector('#favorite');
+var navFavorite = document.querySelector('#nav-favorite')
+var homeIcon = document.querySelector('#home');
 
 getData()
+
+
+
+var favorites = []
+
+var storageFavorites = localStorage.getItem('favorites');
+storageFavorites = JSON.parse(storageFavorites)
+if(storageFavorites !== null){
+  favorites = storageFavorites
+}
+console.log(storageFavorites)
+
+
+var currentActivity = null
+
+
+// get the favoites first load
+// when you click the favorites it adds to favorites
+// push new favorite into favorites array
+// save to local storage
+
+
 
 document.addEventListener('click', handleClick)
 
 function handleClick(event){
   if(data.allActivities){
     if(event.target.id === 'go-button'){
-      viewSwap(event.target.id)
+      viewSwap(event.target.id);
     }
     if(event.target.id === 'try-again'){
-      renderActivity()
+      renderActivity();
+      favoriteIcon.classList.remove('favorite')
+    }
+    if (event.target.id === 'favorite') {
+      favoriteIcon.classList.add('favorite')
+      //check if current item just added so can't click star and add many times
+      if (favorites[favorites.length -1] !== currentActivity )
+      favorites.push(currentActivity)
+      var favoritesJSON = JSON.stringify(favorites);
+      localStorage.setItem('favorites', favoritesJSON);
+      
+
+    }
+    if (event.target.id === 'home') {
+      viewSwap(event.target.id)
     }
   }
 }
@@ -27,8 +66,6 @@ function getData () {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     data.allActivities = xhr.response
-    navBar.classList.add('hidden')
-
   });
   xhr.send();
 }
@@ -40,6 +77,11 @@ function viewSwap(id) {
     navBar.classList.remove('hidden')
     renderActivity()
   }
+  if (id === 'home') {
+    $viewRandom.classList.add('hidden');
+    navBar.classList.add('hidden');
+    homeBody.classList.remove('hidden')
+  }
 }
 
 function renderActivity(){
@@ -47,6 +89,8 @@ function renderActivity(){
   var random = Math.floor(Math.random() * data.allActivities.length)
   //get random activty
   var randomActivity = data.allActivities[random]
+  currentActivity = randomActivity
+
   // render to the dom
 
   var activityName = document.createElement('p');
@@ -80,9 +124,6 @@ function renderActivity(){
   activityPrice.appendChild(priceSpan);
   activityPrice.appendChild(priceText);
   $activity.appendChild(activityPrice);
-
-
-  // have button where we can ctry agian
 }
 
 function getPrice (price) {
