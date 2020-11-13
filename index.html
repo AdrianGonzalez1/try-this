@@ -15,15 +15,23 @@
     <h1>Try This!</h1>
   </header>
   <div class="container">
+    <div id="home-body">
     <div class="row">
-      <div class="home-text-body">
+      <div class="home home-text-body" data-view='home'>
         <p class="home-text">Bored? <br>We got some <br>ideas for you!</p>
       </div>
     </div>
     <div class="row">
-      <div class="home-go-button">
-        <button class="go-button">Go!</button>
+      <div class="home home-go-button" data-view='home'>
+        <button id="go-button" class="go-button">Go!</button>
       </div>
+    </div>
+    </div>
+    <div id="view-random" class="hidden">
+      <div id="activity">
+  
+      </div>
+      <button id="try-again"> Try again</button>
     </div>
   </div>
   <script src="js/data.js"></script>
