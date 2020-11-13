@@ -9,7 +9,6 @@ getData()
 document.addEventListener('click', handleClick)
 
 function handleClick(event){
-
   if(data.allActivities){
     if(event.target.id === 'go-button'){
       viewSwap(event.target.id)
@@ -46,17 +45,37 @@ function renderActivity(){
   //get random activty
   var randomActivity = data.allActivities[random]
   // render to the dom
+
   var activityName = document.createElement('p');
-  activityName.textContent = 'Activity Name: ' + randomActivity.activity;
+  var nameSpan = document.createElement('span')
+  nameSpan.textContent = "Activity Name: "
+  var nameText = document.createTextNode(randomActivity.activity)
+  activityName.appendChild(nameSpan)
+  activityName.appendChild(nameText)
   $activity.appendChild(activityName);
+
   var activityType = document.createElement('p');
-  activityType.textContent = 'Activity Type: ' + randomActivity.type;
+  var activitySpan = document.createElement('span');
+  activitySpan.textContent = 'Activity Type: ';
+  var activityText = document.createTextNode(randomActivity.type);
+  activityType.appendChild(activitySpan);
+  activityType.appendChild(activityText);
   $activity.appendChild(activityType);
+
   var participants = document.createElement('p');
-  participants.textContent = 'Participants: ' + randomActivity.participants;
+  var participantsSpan = document.createElement('span');
+  participantsSpan.textContent = 'Participants: ';
+  var participantsText = document.createTextNode(randomActivity.participants);
+  participants.appendChild(participantsSpan);
+  participants.appendChild(participantsText);
   $activity.appendChild(participants);
+
   var activityPrice = document.createElement('p');
-  activityPrice.textContent = 'Price: ' + getPrice(randomActivity.price);
+  var priceSpan = document.createElement('span');
+  priceSpan.textContent = 'Price: ';
+  var priceText = document.createTextNode(getPrice(randomActivity.price));
+  activityPrice.appendChild(priceSpan);
+  activityPrice.appendChild(priceText);
   $activity.appendChild(activityPrice);
 
 

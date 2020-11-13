@@ -6,9 +6,11 @@
   <title>Try This!</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  
 </head>
 <body>
   <header>
@@ -27,11 +29,22 @@
       </div>
     </div>
     </div>
-    <div id="view-random" class="hidden">
-      <div id="activity">
-  
+    <div id="view-random" class="hidden view-random">
+      <div class="row">
+        <div class="activity" id="activity">
+    
+        </div>
+        <button class="try-again" id="try-again"> Try again</button>
+
       </div>
-      <button id="try-again"> Try again</button>
+    </div>
+    <div class="nav">
+      <div class="row nav-bar">
+        <div class="search-icon icon">
+          <i class="fas icons fa-2x fa-home"></i>
+          <i class="far icons fa-2x fa-star"></i>
+        </div>
+      </div>
     </div>
   </div>
   <script src="js/data.js"></script>
