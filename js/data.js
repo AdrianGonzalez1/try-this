@@ -1,4 +1,5 @@
 /* exported data */
 var data = {
-  allActivities: ''
+  allActivities: '',
+  favorites: ''
 }

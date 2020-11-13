@@ -76,3 +76,22 @@ h1 {
   color: white;
   
 }
+
+.fav-row {
+  display: flex;
+}
+
+.fav-icon {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-right: 3rem;
+  margin-bottom: 1rem;
+}
+.fav {
+  color: black;
+}
+
+.favorite {
+  color: rgb(235, 235, 5);
+}
