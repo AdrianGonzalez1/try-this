@@ -37,7 +37,7 @@ h1 {
   text-align: center;
 }
 
-.go-button, .try-again {
+.go-button, .try-again, .submit-experience {
   padding: .75rem 2.5rem;
   font-size: 28px;
   background-color: #ff0707;
@@ -105,4 +105,13 @@ h1 {
 
 ul {
   list-style: none;
+}
+
+.favorite-entry {
+  width: 50%;
+ 
+}
+form {
+  display: flex;
+  flex-direction: column;
 }

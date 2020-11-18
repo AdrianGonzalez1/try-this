@@ -48,6 +48,7 @@ function handleClick(event){
       viewSwap(event.target.id)
     }
     if (event.target.id === 'nav-favorite') {
+      if (favorite[favorites.length -1] !== currentActivity )
       viewSwap(event.target.id)
       console.log('star clicked')
     }
@@ -71,7 +72,6 @@ function viewSwap(id) {
     homeBody.classList.add('hidden')
     $viewRandom.classList.remove('hidden')
     navBar.classList.remove('hidden')
-
     renderActivity()
   }
   if (id === 'nav-home') {
@@ -133,13 +133,14 @@ function renderActivity(){
 }
 
 function renderFavorites() {
-  if (favorites[favorites.length-1] !== favorites[i])
   for (var i = 0; i <= favorites.length; i++) {
     var favoriteLi = document.createElement('li');
-    favoriteLi.textContent = favorites[i].activity;
+    favoriteLi.textContent = favorites[i].activity; 
     $favoritesUl.appendChild(favoriteLi);
+
   }
 }
+
 
 function getPrice (price) {
   var result;
