@@ -20,7 +20,9 @@ storageFavorites = JSON.parse(storageFavorites)
 if(storageFavorites !== null){
   favorites = storageFavorites
 }
-console.log(storageFavorites)
+
+//save a view setting
+
 
 
 var currentActivity = null
@@ -28,6 +30,7 @@ var currentActivity = null
 document.addEventListener('click', handleClick)
 
 function handleClick(event){
+  console.log(event.target.id)
   if(data.allActivities){
     if(event.target.id === 'go-button'){
       viewSwap(event.target.id);
@@ -39,16 +42,18 @@ function handleClick(event){
     if (event.target.id === 'favorite') {
       favoriteIcon.classList.add('favorite')
       //check if current item just added so can't click star and add many times
-      if (favorite[favorites.length -1] !== currentActivity )
-      favorites.push(currentActivity)
-      var favoritesJSON = JSON.stringify(favorites);
-      localStorage.setItem('favorites', favoritesJSON);
+      if (favorite[favorites.length -1] !== currentActivity) {
+        favorites.push(currentActivity)
+        var favoritesJSON = JSON.stringify(favorites);
+        localStorage.setItem('favorites', favoritesJSON);
+      }
     }
     if (event.target.id === 'nav-home') {
       viewSwap(event.target.id)
     }
     if (event.target.id === 'nav-favorite') {
-      if (favorite[favorites.length -1] !== currentActivity )
+      //maybe don't want tot view swap if already viewinmg favorites
+      //id might be in wrong
       viewSwap(event.target.id)
       console.log('star clicked')
     }
@@ -72,6 +77,7 @@ function viewSwap(id) {
     homeBody.classList.add('hidden')
     $viewRandom.classList.remove('hidden')
     navBar.classList.remove('hidden')
+    favoriteIcon.classList.remove('favorite')
     renderActivity()
   }
   if (id === 'nav-home') {
@@ -133,7 +139,8 @@ function renderActivity(){
 }
 
 function renderFavorites() {
-  for (var i = 0; i <= favorites.length; i++) {
+  $favoritesUl.innerHTML = '';
+  for (var i = 0; i < favorites.length; i++) {
     var favoriteLi = document.createElement('li');
     favoriteLi.textContent = favorites[i].activity; 
     $favoritesUl.appendChild(favoriteLi);
