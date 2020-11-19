@@ -104,7 +104,7 @@ h1 {
 }
 
 ul {
-  list-style: none;
+  list-style-image: ;
 }
 
 .favorite-entry {
@@ -114,4 +114,9 @@ ul {
 form {
   display: flex;
   flex-direction: column;
+}
+.button-nav {
+  background-color: black;
+  border: none;
+  padding: 15px;
 }

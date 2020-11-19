@@ -30,7 +30,8 @@ var currentActivity = null
 document.addEventListener('click', handleClick)
 
 function handleClick(event){
-  console.log(event.target.id)
+  console.log("target" , event.target.id)
+  var target = event.target
   if(data.allActivities){
     if(event.target.id === 'go-button'){
       viewSwap(event.target.id);
@@ -48,14 +49,13 @@ function handleClick(event){
         localStorage.setItem('favorites', favoritesJSON);
       }
     }
-    if (event.target.id === 'nav-home') {
-      viewSwap(event.target.id)
+    if (target.id === 'nav-home' || target.parentElement.id === 'nav-home') {
+      viewSwap('nav-home')
     }
-    if (event.target.id === 'nav-favorite') {
+    if (event.target.id === 'nav-favorite' || target.parentElement.id === 'nav-favorite') {
       //maybe don't want tot view swap if already viewinmg favorites
       //id might be in wrong
-      viewSwap(event.target.id)
-      console.log('star clicked')
+      viewSwap('nav-favorite')
     }
   }
 }
