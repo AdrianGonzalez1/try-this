@@ -37,13 +37,14 @@ h1 {
   text-align: center;
 }
 
-.go-button, .try-again {
+.go-button, .try-again, .submit-experience {
   padding: .75rem 2.5rem;
   font-size: 28px;
   background-color: #ff0707;
   color: white;
   border: none;
   font-weight: bold;
+  border-radius: 10px;
 }
 
 .hidden {
@@ -88,10 +89,27 @@ h1 {
   margin-right: 3rem;
   margin-bottom: 1rem;
 }
+
 .fav {
   color: black;
 }
 
 .favorite {
   color: rgb(235, 235, 5);
+}
+
+.favorites-list {
+  text-align: center;
+
+}
+
+ul {
+  list-style-image: ;
+}
+
+
+.button-nav {
+  background-color: black;
+  border: none;
+  padding: 15px;
 }

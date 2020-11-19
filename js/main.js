@@ -5,8 +5,10 @@ var $viewRandom = document.querySelector('#view-random')
 var navBar = document.querySelector('.nav');
 var favoriteIcon = document.querySelector('#favorite');
 var navFavorite = document.querySelector('#nav-favorite')
-var homeIcon = document.querySelector('#home');
-
+var homeIcon = document.querySelector('#nav-home');
+var $favoritesList = document.querySelector('#favorites-list');
+var $favoritesUl = document.querySelector('.favorite-ul');
+var $favHeader = document.querySelector('.fav-header');
 getData()
 
 
@@ -18,22 +20,18 @@ storageFavorites = JSON.parse(storageFavorites)
 if(storageFavorites !== null){
   favorites = storageFavorites
 }
-console.log(storageFavorites)
+
+//save a view setting
+
 
 
 var currentActivity = null
 
-
-// get the favoites first load
-// when you click the favorites it adds to favorites
-// push new favorite into favorites array
-// save to local storage
-
-
-
 document.addEventListener('click', handleClick)
 
 function handleClick(event){
+  console.log("target" , event.target.id)
+  var target = event.target
   if(data.allActivities){
     if(event.target.id === 'go-button'){
       viewSwap(event.target.id);
@@ -45,15 +43,19 @@ function handleClick(event){
     if (event.target.id === 'favorite') {
       favoriteIcon.classList.add('favorite')
       //check if current item just added so can't click star and add many times
-      if (favorites[favorites.length -1] !== currentActivity )
-      favorites.push(currentActivity)
-      var favoritesJSON = JSON.stringify(favorites);
-      localStorage.setItem('favorites', favoritesJSON);
-      
-
+      if (favorite[favorites.length -1] !== currentActivity) {
+        favorites.push(currentActivity)
+        var favoritesJSON = JSON.stringify(favorites);
+        localStorage.setItem('favorites', favoritesJSON);
+      }
     }
-    if (event.target.id === 'home') {
-      viewSwap(event.target.id)
+    if (target.id === 'nav-home' || target.parentElement.id === 'nav-home') {
+      viewSwap('nav-home')
+    }
+    if (event.target.id === 'nav-favorite' || target.parentElement.id === 'nav-favorite') {
+      //maybe don't want tot view swap if already viewinmg favorites
+      //id might be in wrong
+      viewSwap('nav-favorite')
     }
   }
 }
@@ -75,12 +77,22 @@ function viewSwap(id) {
     homeBody.classList.add('hidden')
     $viewRandom.classList.remove('hidden')
     navBar.classList.remove('hidden')
+    favoriteIcon.classList.remove('favorite')
     renderActivity()
   }
-  if (id === 'home') {
+  if (id === 'nav-home') {
     $viewRandom.classList.add('hidden');
     navBar.classList.add('hidden');
     homeBody.classList.remove('hidden')
+    $favoritesUl.classList.add('hidden')
+    $favHeader.classList.add('hidden')
+  }
+  if (id === 'nav-favorite') {
+    homeBody.classList.add('hidden');
+    $viewRandom.classList.add('hidden');
+    $favoritesUl.classList.remove('hidden')
+    $favHeader.classList.remove('hidden')
+    renderFavorites();
   }
 }
 
@@ -126,8 +138,19 @@ function renderActivity(){
   $activity.appendChild(activityPrice);
 }
 
+function renderFavorites() {
+  $favoritesUl.innerHTML = '';
+  for (var i = 0; i < favorites.length; i++) {
+    var favoriteLi = document.createElement('li');
+    favoriteLi.textContent = favorites[i].activity; 
+    $favoritesUl.appendChild(favoriteLi);
+
+  }
+}
+
+
 function getPrice (price) {
-  var result
+  var result;
   if (price === 0) {
    result = 'Free!';
  } else if (price <= 0.25) {
