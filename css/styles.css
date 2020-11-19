@@ -107,14 +107,7 @@ ul {
   list-style-image: ;
 }
 
-.favorite-entry {
-  width: 50%;
- 
-}
-form {
-  display: flex;
-  flex-direction: column;
-}
+
 .button-nav {
   background-color: black;
   border: none;
